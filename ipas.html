@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Iframe</title>
+    <style>
+        /* Make sure the iframe takes the full width and height of the window */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="iframe"></iframe>
+
+    <script>
+        // Get the current URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Check if the URL contains &id=
+        const iframe = document.getElementById('iframe');
+        const idParam = urlParams.get('id');
+
+        if (idParam) {
+            // If the URL contains &id=, use the provided ID value
+            iframe.src = `https://meka-ipas.bubbleapps.io/version-test/app/${idParam}`;
+        } else {
+            // If the URL doesn't contain &id=, display the default website
+            iframe.src = 'https://meka-ipas.bubbleapps.io/version-test/';
+        }
+    </script>
+</body>
+</html>

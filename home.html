@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to mekabrine.space</title>
+
+    <!-- Style for the homepage -->
+    <style>
+        body {
+            background: linear-gradient(45deg, #A6B3E2, #4C3D7B); /* Darker diagonal light blue and purple gradient */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        .welcome, .meka {
+            font-size: 45px;
+        }
+
+        /* Apply span to each letter in "Welcome to" */
+        .welcome span, .meka span {
+            display: inline-block;
+            transition: font-size 0.3s ease-in-out; /* Transition for font size */
+        }
+
+        /* Hover effect for individual letters */
+        .welcome span:hover {
+            font-size: 80px; /* Increase font size on hover */
+        }
+
+        .meka span:hover {
+            font-size: 105px; /* Increase font size on hover */
+        }
+
+
+        h1 span.welcome {
+            font-size: 45px;
+            display: block; /* Ensure it appears on a new line */
+            background: -webkit-linear-gradient(#EEF7FF, #F1F0FD); /* Gradient from light purple to light blue */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        h1 span.meka {
+            font-size: 70px;
+            font-weight: bold;
+            display: block; /* Ensure it appears on a new line */
+            background: -webkit-linear-gradient(#F1F0FD, #F4E8FA); /* Gradient from light purple to light blue */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .image-link {
+            margin: 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Slightly darker shadow */
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .image-link:hover {
+            transform: scale(1.1); /* Apply the scale effect to the entire group */
+        }
+
+        .image-link img {
+            width: 250px;
+            height: 250px; /* Ensuring square images */
+            border-radius: 10px;
+        }
+
+        .image-link p {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6); /* Darker background */
+            animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for background */
+        }
+
+        /* Fade-in and fade-out animation for background (grayout) */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Flip animation for modal (popup) */
+        @keyframes flipIn {
+            0% {
+                transform: rotateY(90deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Reverse flip-out animation for modal (popup) */
+        @keyframes flipOut {
+            0% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: rotateY(-90deg);
+                opacity: 0;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(45deg, #3F2A55, #2C3E69); /* Darker flipped background gradient */
+            margin: 0 auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 60px;
+            position: relative;
+            top: 10%;
+            transform: translateY(0%); /* Center the modal vertically */
+            animation: flipIn 0.5s ease-in-out; /* Flip-in animation for the popup */
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h2 {
+            color: #fff;
+        }
+
+        .modal-content p {
+            color: #fcfcfc;
+            margin-bottom: 20px;
+        }
+
+        .go-to-btn {
+            background-color: #5A4B8D;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .go-to-btn:hover {
+            background-color: #4b3c6b;
+            transform: scale(1.05); /* Apply the scale effect to the entire group */
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        <span class="welcome">
+            <!-- Apply a span for each letter -->
+            <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span> <span>t</span><span>o</span>
+        </span>
+        <span class="meka">
+            <b>
+                <!-- Apply a span for each letter in "mekabrine.space" -->
+                <span>m</span><span>e</span><span>k</span><span>a</span><span>b</span><span>r</span><span>i</span><span>n</span><span>e</span>.<span>s</span><span>p</span><span>a</span><span>c</span><span>e</span>
+            </b>
+        </span>
+    </h1>
+
+    <div class="container">
+        <!-- Codeblocks Image Link -->
+        <div class="image-link" onclick="openModal('codeblocks')">
+            <img src="https://i.ibb.co/fC5W4M9/image-2024-12-25-110907336.png" alt="Codeblocks">
+            <p>Codeblocks</p>
+        </div>
+
+        <!-- IPAs Image Link -->
+        <div class="image-link" onclick="openModal('ipas')">
+            <img src="https://i.ibb.co/M561Hm9/image-2024-12-25-111133168.png" alt="IPAs">
+            <p>IPAs</p>
+        </div>
+    </div>
+
+    <!-- Modal for Codeblocks -->
+    <div id="codeblocks-modal" class="modal">
+        <div class="modal-content">
+            <img src="https://i.ibb.co/fC5W4M9/image-2024-12-25-110907336.png" alt="Codeblocks">
+            <h2>Codeblocks</h2>
+            <p>Simple website to easily code using blocks that snap into place, you can even create your own blocks!</p>
+            <a href="/mcb.html" title="Codeblocks" class="go-to-btn">Go To</a>
+        </div>
+    </div>
+
+    <!-- Modal for IPAs -->
+    <div id="ipas-modal" class="modal">
+        <div class="modal-content">
+            <img src="https://i.ibb.co/M561Hm9/image-2024-12-25-111133168.png" alt="IPAs">
+            <h2>IPAs</h2>
+            <p>My library of .ipa files, you can add your own files to help grow the collection!</p>
+            <a href="/ipa.html" title="ipas" class="go-to-btn">Go To</a>
+        </div>
+    </div>
+
+    <script>
+        // Open Modal function
+        function openModal(type) {
+            var modal = document.getElementById(type + '-modal');
+            var grayout = modal;
+            var modalContent = modal.querySelector('.modal-content');
+
+            // Make the modal visible
+            modal.style.display = "block";
+            modal.style.animation = "fadeIn 0.5s ease-in-out"; // Fade-in for the background
+            modalContent.style.animation = "flipIn 0.5s ease-in-out"; // Flip-in for the popup
+        }
+
+        // Close Modal function
+        function closeModal(type) {
+            var modal = document.getElementById(type + '-modal');
+            var modalContent = modal.querySelector('.modal-content');
+
+            modal.style.animation = "fadeOut 0.5s ease-in-out"; // Fade-out for the background
+            modalContent.style.animation = "flipOut 0.5s ease-in-out"; // Flip-out for the popup
+
+            setTimeout(function () {
+                modal.style.display = "none"; // Hide modal after animation
+            }, 500); // Wait for animation duration to complete before hiding
+        }
+
+        // Close modal if clicked outside the content area
+        window.onclick = function (event) {
+            if (event.target.classList.contains("modal")) {
+                var modals = document.querySelectorAll('.modal');
+                modals.forEach(function (modal) {
+                    modal.style.animation = "fadeOut 0.5s ease-in-out"; // Fade-out for the background
+                    var modalContent = modal.querySelector('.modal-content');
+                    modalContent.style.animation = "flipOut 0.5s ease-in-out"; // Flip-out for the popup
+                    setTimeout(function () {
+                        modal.style.display = "none";
+                    }, 500); // Wait for animation duration to complete before hiding
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>
